@@ -3,12 +3,13 @@ import Search from '../../ui/Search';
 import RepoList from '../../ui/RepoList';
 import { useDispatch, useSelector } from "react-redux";
 import {AppState} from '../../../reducers/index';
-import { getRepos, resetRepos } from '../../../actions/repo';
-import { getBranches } from '../../../actions/branch';
+import { loadRepos, resetRepos } from '../../../actions/repo';
+import { loadBranches } from '../../../actions/branch';
+import {IRepo} from 'types';
 
 export const Repos: React.FC = () => {
     const [serchText, setSerchText] = useState('');
-    const [openRepoId, setOpenRepoId] = useState(undefined);
+    const [openRepoId, setOpenRepoId] = useState(0);
     const repos = useSelector(({repo}: AppState) => repo.list);
     const branches = useSelector(({branch}: AppState) => branch.list);
     const dispatch = useDispatch();
@@ -23,17 +24,19 @@ export const Repos: React.FC = () => {
 
     const handleSubmit = () => {
         if (serchText) {
-            dispatch(getRepos(serchText));
+            dispatch(loadRepos(serchText));
         };
     };
 
-    const handleGetBranchRepo = async (url: string, repoId: any) => {
-        await dispatch(getBranches(url));
-        if (openRepoId === repoId) {
-            await setOpenRepoId(undefined);
-        } else {
-            await setOpenRepoId(repoId);
-        }; 
+    const handleLoadRepoBranches = async (repo: IRepo) => {
+        const isCurrentRepoSelected = openRepoId === repo.id;
+
+        if (isCurrentRepoSelected) {
+            return setOpenRepoId(0);
+        }
+
+        await dispatch(loadBranches(repo.branches_url));
+        setOpenRepoId(repo.id);
     };
 
     return (
@@ -46,8 +49,8 @@ export const Repos: React.FC = () => {
             <RepoList
                 repos={repos}
                 branches={branches}
-                openRepoId={openRepoId}
-                getBranchsRepo={handleGetBranchRepo}
+                selectedRepoId={openRepoId}
+                onRepoSelect={handleLoadRepoBranches}
             />
         </div>
     );

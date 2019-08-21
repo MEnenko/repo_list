@@ -1,30 +1,24 @@
-import { GET_REPOS, GET_REPOS_ERROR } from './types';
+import { SET_REPOS } from './types';
 import { Dispatch } from 'redux';
 import {getReposBySearch} from '../api/github';
+import {setError} from './error';
 
-// get all repos
-export const getRepos = (query: string) => async (dispatch: Dispatch) => {
-  console.log('getRepos() ran');
+export const loadRepos = (query: string) => async (dispatch: Dispatch) => {
   try {
-    const res = await getReposBySearch(query);
-    const data = await res.json();
-    console.log('repos data from action:', data);
+    const list = await getReposBySearch(query);
     
     dispatch({
-      type: GET_REPOS,
-      list: data.items
+      type: SET_REPOS,
+      list,
     });
   } catch(err) {
-    dispatch({
-      type: GET_REPOS_ERROR,
-      payload: err
-    });
+    dispatch(setError(err.message));
   };
 };
 
 export const resetRepos = () => async (dispatch: Dispatch) => {
   dispatch({
-    type: GET_REPOS,
+    type: SET_REPOS,
     list: [],
   });
 };

@@ -1,22 +1,22 @@
-import { GET_BRANCHES } from "../actions/types";
+import { SET_BRANCHES } from "../actions/types";
 import { Action, Reducer } from 'redux';
 import {IBranch} from 'types';
 
-export interface IRepoBranchState {
+export interface IRepoBrancheState {
   readonly list: IBranch[]
 }
 
-interface IGetRepoBranches extends Action<typeof GET_BRANCHES> {
+interface IGetRepoBranches extends Action<typeof SET_BRANCHES> {
   list: IBranch[]
 }
 
-const initialState: IRepoBranchState = {
+const initialState: IRepoBrancheState = {
   list: []
 };
 
-export const reducer: Reducer<IRepoBranchState, IGetRepoBranches> = (state = initialState, action) => {
+export const reducer: Reducer<IRepoBrancheState, IGetRepoBranches> = (state = initialState, action) => {
   switch (action.type) {
-    case GET_BRANCHES:
+    case SET_BRANCHES:
       return {
         ...state,
         list: action.list

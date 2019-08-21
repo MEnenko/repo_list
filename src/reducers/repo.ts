@@ -1,4 +1,4 @@
-import { GET_REPOS } from "../actions/types";
+import { SET_REPOS } from "../actions/types";
 import { Action, Reducer } from 'redux';
 import {IRepo} from 'types';
 
@@ -6,7 +6,7 @@ export interface IRepoState {
   readonly list: IRepo[]
 }
 
-interface IGetReposAction extends Action<typeof GET_REPOS> {
+interface IGetReposAction extends Action<typeof SET_REPOS> {
   list: IRepo[]
 }
 
@@ -16,7 +16,7 @@ const initialState: IRepoState = {
 
 const reducer: Reducer<IRepoState, IGetReposAction> = (state = initialState, action) => {
   switch (action.type) {
-    case GET_REPOS:
+    case SET_REPOS:
       return {
         ...state,
         list: action.list

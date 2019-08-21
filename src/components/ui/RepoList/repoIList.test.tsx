@@ -6,7 +6,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 it('should run without failure with empty params', () => {
     const repoList = Enzyme.shallow(
-        <RepoList repos={[]} branches={[]} openRepoId={undefined} getBranchsRepo={(ul, id)=> {}}/>
+        <RepoList repos={[]} branches={[]} selectedRepoId={0} onRepoSelect={()=> {}}/>
     );
 
     expect(repoList.find('ul').children()).toHaveLength(0);
@@ -25,7 +25,7 @@ it('should put repos param', () => {
     }];
 
     const repoList = Enzyme.shallow(
-        <RepoList repos={repos} branches={[]} openRepoId={undefined} getBranchsRepo={(ul, id)=> {}}/>
+        <RepoList repos={repos} branches={[]} selectedRepoId={0} onRepoSelect={()=> {}}/>
     )
 
     expect(repoList.find('ul').children()).toHaveLength(1);

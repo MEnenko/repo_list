@@ -2,10 +2,6 @@ export interface IBranch {
     name: string,
 }
 
-export interface IBranches {
-    branches: IBranch[]
-}
-
 export interface IRepoOwner {
     avatar_url: string
 }

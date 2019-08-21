@@ -5,21 +5,24 @@ import RepoItem from '../RepoItem';
 export interface IProps {
   repos: IRepo[],
   branches: IBranch[],
-  openRepoId: any,
-  getBranchsRepo: (url: string, repoId: number) => void,
+  onRepoSelect: (repo: IRepo) => void,
+  selectedRepoId: number,
 }
   
-const ReposList: React.FC<IProps> = ({repos, branches, openRepoId, getBranchsRepo}) => (
+const ReposList: React.FC<IProps> = ({repos, branches, selectedRepoId, onRepoSelect}) => (
   <ul>
-    {repos && repos.map((repo) => (
-      <RepoItem 
-        key={repo.id}
-        repo={repo}
-        selectedRepoId={openRepoId}
-        branches={branches}
-        getBranchs={getBranchsRepo}
-      />
-    ))}
+    {repos.map((repo) => {
+      const currentRepoBranches = selectedRepoId === repo.id ? branches : [];
+
+      return (
+        <RepoItem 
+          key={repo.id}
+          repo={repo}
+          branches={currentRepoBranches}
+          onClick={onRepoSelect}
+        />
+      )
+    })}
   </ul>
 );
 

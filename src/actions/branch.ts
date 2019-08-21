@@ -1,24 +1,23 @@
 
-import { GET_BRANCHES, GET_BRANCHES_ERROR } from './types';
+import { SET_BRANCHES } from './types';
 import { Dispatch } from 'redux';
 import {getRepoBranches} from '../api/github';
+import {setError} from './error';
 
-// get all branches for repo
-export const getBranches = (url: string) => async (dispatch: Dispatch) => {
-    console.log('getBranches() ran');
+export const loadBranches = (url: string) => async (dispatch: Dispatch) => {
     try {
-      const res = await getRepoBranches(url)
-      const data = await res.json();
+      dispatch({
+        type: SET_BRANCHES,
+        list: [],
+      });
+
+      const list = await getRepoBranches(url);
       
-      console.log('repos data from action:', data);
       dispatch({
-        type: GET_BRANCHES,
-        list: data
+        type: SET_BRANCHES,
+        list,
       });
-    } catch(err) {
-      dispatch({
-        type: GET_BRANCHES_ERROR,
-        list: err
-      });
+    } catch (err) {
+      dispatch(setError(await err.message));
     }
   }
