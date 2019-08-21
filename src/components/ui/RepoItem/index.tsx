@@ -1,12 +1,12 @@
 import React from 'react';
-import * as I from '../../../types';
+import {IRepo, IBranch} from '../../../types';
 import Avatar from '@material-ui/core/Avatar';
 import styles from './index.module.css';
 import BranchList from '../BranchList';
 
 export interface IProps {
-    repo: I.IRepo,
-    branches: I.IBranch[],
+    repo: IRepo,
+    branches: IBranch[],
     selectedRepoId: number,
     getBranchs: (url: string, numRepo: number) => void,
   }

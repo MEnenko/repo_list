@@ -1,10 +1,10 @@
 import React from 'react';
-import * as I from '../../../types';
+import {IRepo, IBranch} from '../../../types';
 import RepoItem from '../RepoItem';
 
 export interface IProps {
-  repos: I.IRepo[],
-  branches: I.IBranch[],
+  repos: IRepo[],
+  branches: IBranch[],
   openRepoId: any,
   getBranchsRepo: (url: string, repoId: number) => void,
 }
