@@ -18,7 +18,7 @@ it('should run without failure with empty params', () => {
         <RepoItem repo={repo} branches={[]} onClick={()=> {}}/>
     );
 
-    expect(repoItem.find('ul').children()).toHaveLength(0);
+    expect(repoItem.find('tbody').children()).toHaveLength(0);
 });
 
 it('should call onClick collback on button click', () => {
@@ -37,7 +37,7 @@ it('should call onClick collback on button click', () => {
         <RepoItem repo={repo} branches={[]} onClick={mockOnClick}/>
     );
 
-    const input = repoItem.find('input');
+    const input = repoItem.find('Button');
     input.simulate('click');
 
     expect(mockOnClick.mock.calls[0][0]).toEqual(repo);

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './search.module.css';
+import {InputGroup, FormControl, FormControlProps} from 'react-bootstrap';
 
 export const DEFAULT_PLACEHOLDER = 'Search for repo..';
 export const KEY_CODE_ENTER = 13;
@@ -19,21 +19,28 @@ const Search: React.FC<IProps> = ({value, onChange, onSubmit, placeholder}) => {
       onSubmit();
     };
   };
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => 
-    onChange(event.currentTarget.value);
+  const handleChange = (event: React.FormEvent<FormControl & FormControlProps>) => 
+    onChange(event.currentTarget.value as string);
+
+  const searchPlaceholder = placeholder || DEFAULT_PLACEHOLDER;
 
   return (
-    <form className={styles.wrapper}>
-      <input
-        className={styles.input}
-        type="text"
-        value={value}
+    <InputGroup
+     className="mb-3"        
+    >
+      <FormControl
+        placeholder={searchPlaceholder}
         onKeyDown={handleKeyPressed}
-        onChange={handleChange}
-        placeholder={placeholder || DEFAULT_PLACEHOLDER} 
+        onChange={handleChange} 
+        value={value}
       />
-      <button type="button" className={styles.btn} onClick={onSubmit}>⚲</button>
-    </form>
+      <InputGroup.Append>
+        <InputGroup.Text 
+          onClick={onSubmit}
+        >⚲</InputGroup.Text>
+      </InputGroup.Append>
+    </InputGroup>
+
   );
 };
 

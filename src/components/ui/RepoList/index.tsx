@@ -1,6 +1,7 @@
 import React from 'react';
 import {IRepo, IBranch} from 'types';
 import RepoItem from '../RepoItem';
+import {Table} from 'react-bootstrap';
 
 export interface IProps {
   repos: IRepo[],
@@ -10,7 +11,8 @@ export interface IProps {
 }
   
 const ReposList: React.FC<IProps> = ({repos, branches, selectedRepoId, onRepoSelect}) => (
-  <ul>
+  <Table bordered>
+    <tbody>
     {repos.map((repo) => {
       const currentRepoBranches = selectedRepoId === repo.id ? branches : [];
 
@@ -23,7 +25,8 @@ const ReposList: React.FC<IProps> = ({repos, branches, selectedRepoId, onRepoSel
         />
       )
     })}
-  </ul>
+    </tbody>
+  </Table>
 );
 
 export default ReposList;

@@ -1,8 +1,8 @@
 import React from 'react';
 import {IRepo, IBranch} from 'types';
-import Avatar from '@material-ui/core/Avatar';
 import styles from './index.module.css';
 import BranchList from '../BranchList';
+import { Button, Image } from 'react-bootstrap';
 
 export interface IProps {
     repo: IRepo,
@@ -11,19 +11,28 @@ export interface IProps {
   }
 
 const RepoItem: React.FC<IProps> = ({repo, branches, onClick}) => (
-    <li className={styles.data}>
-        <div>
-            <input 
-                className={styles.input}
-                type="button"
-                value={repo.name}
-                onClick={onClick.bind(null, repo)}
-            />
-            {Boolean(branches.length) && <BranchList branches={branches}/>}
-        </div>            
-        <p>{repo.description}</p>
-        <Avatar alt="" src={repo.owner.avatar_url} />
-    </li>
+    <React.Fragment>
+        <tr>
+            <td>
+                <Button
+                    variant="light"
+                    onClick={onClick.bind(null, repo)}
+                    block
+                >{repo.name}</Button>
+            </td>            
+            <td>{repo.description}</td>
+            <td align="center">
+                <Image src={repo.owner.avatar_url} roundedCircle className={styles.avatar} />
+            </td>
+        </tr>
+        {Boolean(branches.length) && (
+            <tr>
+                <td colSpan={3}>
+                    <BranchList branches={branches}/>
+                </td>
+            </tr>
+        )}
+   </React.Fragment>
 );
   
   export default RepoItem;

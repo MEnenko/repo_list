@@ -1,18 +1,19 @@
 import React from 'react';
 import {IBranch} from 'types';
+import {ListGroup} from 'react-bootstrap';
   
 export interface IProps {
     branches: IBranch[],
 }
   
 const BranchList: React.FC<IProps> = ({branches}) => (
-  <ul>
+  <ListGroup>
     {branches.map(({name}) => (
-      <li key={name}>
+      <ListGroup.Item key={name}>
         {name}
-      </li>
+      </ListGroup.Item>
     ))}
-  </ul>
+  </ListGroup>
 );
 
 export default BranchList;

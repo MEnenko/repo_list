@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import BranchList from '../BranchList';
+import BranchList from '.';
 Enzyme.configure({ adapter: new Adapter() });
 
 it('should run without failure with empty params', () => {
@@ -9,7 +9,7 @@ it('should run without failure with empty params', () => {
         <BranchList branches={[]} />
     );
 
-    expect(branches.find('ul').children()).toHaveLength(0);
+    expect(branches.find('ListGroup').children()).toHaveLength(0);
 });
 
 it('should put branches two params', () => {
@@ -18,5 +18,5 @@ it('should put branches two params', () => {
         <BranchList branches={data} />
     );
 
-    expect(branches.find('ul').children()).toHaveLength(2);
+    expect(branches.find('ListGroup').children()).toHaveLength(2);
 });

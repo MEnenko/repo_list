@@ -5,18 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-top: 30px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-ul {
-  margin-left: 0;
-  padding-left: 0
-}
-
-li {
-  list-style-type: none;
 }

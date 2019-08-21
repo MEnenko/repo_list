@@ -6,6 +6,7 @@ import {AppState} from '../../../reducers/index';
 import { loadRepos, resetRepos } from '../../../actions/repo';
 import { loadBranches } from '../../../actions/branch';
 import {IRepo} from 'types';
+import {Row, Col} from 'react-bootstrap';
 
 export const Repos: React.FC = () => {
     const [serchText, setSerchText] = useState('');
@@ -41,17 +42,26 @@ export const Repos: React.FC = () => {
 
     return (
         <div>
-            <Search 
-                value={serchText}
-                onChange={handleChange}
-                onSubmit={handleSubmit}
-            />
+            <Row>
+                <Col>
+                    <Search 
+                        value={serchText}
+                        onChange={handleChange}
+                        onSubmit={handleSubmit}
+                    />
+                </Col>
+            </Row>
+            
+            <Row>
+                <Col>
             <RepoList
                 repos={repos}
                 branches={branches}
                 selectedRepoId={openRepoId}
                 onRepoSelect={handleLoadRepoBranches}
             />
+             </Col>
+            </Row>
         </div>
     );
 };

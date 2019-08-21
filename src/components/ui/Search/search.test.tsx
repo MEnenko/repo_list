@@ -20,7 +20,7 @@ it('should put value inside of search field', () => {
         <Search value={value} onChange={(value) => {}} onSubmit={() => {}}/>
     );
 
-    expect(search.find('input').props().value).toEqual(value);    
+    expect(search.find('FormControl').props().value).toBe(value);    
 });
 
 it('should call onChange collback when input is changed', () => {
@@ -32,7 +32,7 @@ it('should call onChange collback when input is changed', () => {
         <Search value={value} onChange={mockOnChange} onSubmit={() => {}}/>
     );
 
-    const input = search.find('input');
+    const input = search.find('FormControl');
     input.simulate('change', { currentTarget: { value: valueAfterInput } });
 
     expect(mockOnChange.mock.calls[0][0]).toBe(valueAfterInput);
@@ -46,7 +46,7 @@ it('should call onSubmit collback on Enter key', () => {
         <Search value={value} onChange={jest.fn()} onSubmit={mockOnSubmit}/>
     );
 
-    const input = search.find('input');
+    const input = search.find('FormControl');
     input.simulate('keyDown', {keyCode: KEY_CODE_ENTER, preventDefault: jest.fn(), stopPropagation: jest.fn()});    
     expect(mockOnSubmit.mock.calls.length).toBe(1);
 });

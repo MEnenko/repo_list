@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import RepoList from '../RepoList';
+import RepoList from '.';
 Enzyme.configure({ adapter: new Adapter() });
 
 it('should run without failure with empty params', () => {
@@ -9,7 +9,7 @@ it('should run without failure with empty params', () => {
         <RepoList repos={[]} branches={[]} selectedRepoId={0} onRepoSelect={()=> {}}/>
     );
 
-    expect(repoList.find('ul').children()).toHaveLength(0);
+    expect(repoList.find('tbody').children()).toHaveLength(0);
 });
 
 it('should put repos param', () => {
@@ -28,5 +28,5 @@ it('should put repos param', () => {
         <RepoList repos={repos} branches={[]} selectedRepoId={0} onRepoSelect={()=> {}}/>
     )
 
-    expect(repoList.find('ul').children()).toHaveLength(1);
+    expect(repoList.find('tbody').children()).toHaveLength(1);
 });
