@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
+import { Provider } from 'react-redux';
+import { store } from '../store';
 
-const App: React.FC = () => {
+export const App: React.FC<{}> = () => {
   return (
-    <div className="App">
-        
-    </div>
+    <Provider store={store}>
+        <div className="App">
+
+        </div>
+    </Provider>
   );
-}
+};
 
 export default App;
