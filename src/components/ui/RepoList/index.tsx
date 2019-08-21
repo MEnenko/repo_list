@@ -1,5 +1,5 @@
 import React from 'react';
-import {IRepo, IBranch} from '../../../types';
+import {IRepo, IBranch} from 'types';
 import RepoItem from '../RepoItem';
 
 export interface IProps {

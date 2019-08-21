@@ -1,6 +1,6 @@
 import { GET_BRANCHES } from "../actions/types";
 import { Action, Reducer } from 'redux';
-import {IBranch} from '../types';
+import {IBranch} from 'types';
 
 export interface IRepoBranchState {
   readonly list: IBranch[]

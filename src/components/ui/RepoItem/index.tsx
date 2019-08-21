@@ -1,5 +1,5 @@
 import React from 'react';
-import {IRepo, IBranch} from '../../../types';
+import {IRepo, IBranch} from 'types';
 import Avatar from '@material-ui/core/Avatar';
 import styles from './index.module.css';
 import BranchList from '../BranchList';

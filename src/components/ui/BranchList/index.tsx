@@ -1,5 +1,5 @@
 import React from 'react';
-import {IBranch} from '../../../types';
+import {IBranch} from 'types';
   
 export interface IProps {
     branches: IBranch[],
