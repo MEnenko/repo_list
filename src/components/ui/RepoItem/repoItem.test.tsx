@@ -20,3 +20,27 @@ it('should run without failure with empty params', () => {
 
     expect(repoItem.find('ul').children()).toHaveLength(0);
 });
+
+it('should call onClick collback on button click', () => {
+    const repo = { 
+        id: 1,
+        name: '',
+        description: '',
+        branches_url: '',
+        owner: {
+            avatar_url: ''
+        }
+    };
+
+    const mockOnClick = jest.fn();
+    const repoItem = Enzyme.shallow(
+        <RepoItem repo={repo} branches={[]} selectedRepoId={2} getBranchs={mockOnClick}/>
+    );
+
+    const input = repoItem.find('input');
+    input.simulate('click');
+
+    expect(mockOnClick.mock.calls[0][0]).toBe('');
+    expect(mockOnClick.mock.calls[0][1]).toBe(1);
+    expect(mockOnClick.mock.calls.length).toBe(1);
+});
