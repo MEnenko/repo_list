@@ -23,10 +23,10 @@ it('should run without failure with empty params', () => {
 
 it('should call onClick collback on button click', () => {
     const repo = { 
-        id: 1,
+        id: 2,
         name: '',
         description: '',
-        branches_url: '',
+        branches_url: '1234567890',
         owner: {
             avatar_url: ''
         }
@@ -40,7 +40,7 @@ it('should call onClick collback on button click', () => {
     const input = repoItem.find('input');
     input.simulate('click');
 
-    expect(mockOnClick.mock.calls[0][0]).toBe('');
-    expect(mockOnClick.mock.calls[0][1]).toBe(1);
+    expect(mockOnClick.mock.calls[0][0]).toBe('1');
+    expect(mockOnClick.mock.calls[0][1]).toBe(2);
     expect(mockOnClick.mock.calls.length).toBe(1);
 });
