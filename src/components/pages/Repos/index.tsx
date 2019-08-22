@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 import Search from '../../ui/Search';
 import RepoList from '../../ui/RepoList';
 import { useDispatch, useSelector } from "react-redux";
-import {AppState} from '../../../reducers/index';
+import { AppState } from '../../../reducers/index';
 import { loadRepos, resetRepos } from '../../../actions/repo';
 import { loadBranches } from '../../../actions/branch';
-import {IRepo} from 'types';
-import {Row, Col} from 'react-bootstrap';
+import { IRepo } from 'types';
+import { Row, Col } from 'react-bootstrap';
 
 export const Repos: React.FC = () => {
     const [serchText, setSerchText] = useState('');
     const [openRepoId, setOpenRepoId] = useState(0);
-    const repos = useSelector(({repo}: AppState) => repo.list);
-    const branches = useSelector(({branch}: AppState) => branch.list);
+    const repos = useSelector(({ repo }: AppState) => repo.list);
+    const branches = useSelector(({ branch }: AppState) => branch.list);
     const dispatch = useDispatch();
 
     const handleChange = (text: string) => {
-        if(!serchText) {
+        if (!serchText) {
             dispatch(resetRepos());
         }
 
@@ -44,23 +44,23 @@ export const Repos: React.FC = () => {
         <div>
             <Row>
                 <Col>
-                    <Search 
+                    <Search
                         value={serchText}
                         onChange={handleChange}
                         onSubmit={handleSubmit}
                     />
                 </Col>
             </Row>
-            
+
             <Row>
                 <Col>
-            <RepoList
-                repos={repos}
-                branches={branches}
-                selectedRepoId={openRepoId}
-                onRepoSelect={handleLoadRepoBranches}
-            />
-             </Col>
+                    <RepoList
+                        repos={repos}
+                        branches={branches}
+                        selectedRepoId={openRepoId}
+                        onRepoSelect={handleLoadRepoBranches}
+                    />
+                </Col>
             </Row>
         </div>
     );

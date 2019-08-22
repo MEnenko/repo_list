@@ -6,11 +6,11 @@ export interface IErrorState {
 }
 
 interface IGetRepoBranches extends Action<typeof SET_ERROR> {
-    message: string,
+  message: string,
 }
 
 const initialState: IErrorState = {
-    message: '',
+  message: '',
 };
 
 export const reducer: Reducer<IErrorState, IGetRepoBranches> = (state = initialState, action) => {

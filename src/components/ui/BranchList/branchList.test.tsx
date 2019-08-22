@@ -13,7 +13,7 @@ it('should run without failure with empty params', () => {
 });
 
 it('should put branches two params', () => {
-    const data = [{name: 'master'}, {name: '1.2.2'}]
+    const data = [{ name: 'master' }, { name: '1.2.2' }]
     const branches = Enzyme.shallow(
         <BranchList branches={data} />
     );

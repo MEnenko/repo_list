@@ -13,4 +13,3 @@ export interface IRepo {
     branches_url: string,
     owner: IRepoOwner
 }
-  
